@@ -1,0 +1,50 @@
+{{> toastMessage message }}
+<div class='table_product'>
+    <div class='title'>
+        <h2>Detail Supplier</h2>
+        <hr />
+    </div>
+    <div class='formCreateProduct'>
+        <form method='post'  id="form-addSupplier" action="/supplier/update?_method=PUT">
+            <div class='formCreateProduct__first'>
+                <div class='form-groud '>
+                    <input type='text' name='name' id='name' value="{{supplier.name}}" placeholder='Name for supplier' />
+                    <label for='' class='lable-groud'>Name</label>
+                      <input type='text' name='_id' id='_id' value="{{supplier._id}}" hidden/>
+                    <span class="span-message"></span>
+                </div>
+
+                <div class='form-groud'>
+                    <label for='' class='lable-groud'>Phone</label>
+                    <input type='text' name='phone' id='phone' value="{{supplier.phone}}"  />
+                     <span class="span-message"></span>
+                </div>
+                <div class='form-groud'>
+                    <label for='' class='lable-groud'>Address</label>
+                    <input type='text' name='address' id='address' value="{{supplier.address}}" />
+                     <span class="span-message"></span>
+                </div>
+                 <div class='form-groud'>
+                    <label for='' class='lable-groud'>Email</label>
+                    <input type='email' name='email' id='email' value="{{supplier.email}}" id='name' />
+                     <span class="span-message"></span>
+                </div>
+              <div class='form-groud'>
+                    <button class='submit' type='submit'>Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    Validator({
+        form: '#form-addSupplier',
+        errSelector: '.span-message',
+        rules: [
+            Validator.isRequired('#name'),
+            Validator.isRequired('#phone'),
+            Validator.isRequired('#email'),
+            Validator.isRequired('#address'),
+        ]
+    })
+</script>

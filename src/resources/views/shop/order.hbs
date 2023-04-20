@@ -1,0 +1,69 @@
+{{> toastMessage message}}
+
+<form id='form--order' action='/order/add' method='post' class='order'>
+    <div class='shipInfo'>
+        <div class='Shop--name'>NoE GrimDC</div>
+        <div class='shipInfo--title'>Thông tin đặt hàng</div>
+        <div class='shipInfo--container'>
+            <div class='shipInfo--name'>
+                <input type='text' name='name' id='name' placeholder='Nhập họ và tên' value='{{userOrder.name}}' />
+                <span class='span-message'></span>
+            </div>
+            <div class='shipInfo--email__Phone'>
+                <input type='email' name='email' id='email' placeholder='Email' value='{{userOrder.email}}' />
+                <span class='span-message'></span>
+                <input type='phone' name='phone' id='phone' placeholder='Phone' value='{{userOrder.phone}}' />
+            </div>
+            <div class='shipInfo--address__detail'>
+                <input
+                    type='text'
+                    name='address'
+                    id='address'
+                    placeholder='Địa chỉ giao hàng'
+                    value='{{userOrder.address}}'
+                />
+                <span class='span-message'></span>
+
+            </div>
+            <div class='shipInfo--Btn'>
+                <a href=''><i class='fa-solid fa-caret-left'></i>Giỏ hàng</a>
+                <button type='submit'> Đặt Hàng</button>
+            </div>
+        </div>
+
+    </div>
+    <div class='order--cart'>
+        <div class='order--products'>
+            {{#if cartOfUser}}
+                {{#each cartOfUser}}
+                    <div class='order-product__detail'>
+                        <div class='order--img'>
+                            <img src='/img/products/{{getOneImg this.product.id_product.img}}' alt='' />
+                            <span class='order--quantity'>{{this.quantity}}</span>
+                            <input type='text' name='cart' id='cart' value='{{this.product._id}}' hidden />
+                            <input type='text' name='quantity' id='quantity' value='{{this.quantity}}' hidden />
+                            <input type='text' name='id_cart' id='id_cart' value='{{this._id}}' hidden />
+                        </div>
+                        <div class='order--product__contain'>
+                            <div class='order--product__title'>{{this.product.id_product.title}}</div>
+                            <div class='order--product__size'>Size: {{this.product.name}}</div>
+                        </div>
+                        <div class='order--product__price'>{{getTotalPriceCart this.product this.quantity}}</div>
+                    </div>
+                            <input type='text' name='export_price' id='export_price' value='{{salePrice this.product.id_product.export_price this.product.id_product.sale}}' hidden />
+
+                {{/each}}
+            {{/if}}
+        </div>
+        <div class='order--provision'><p>Tổng tiền :</p>
+            <h4>{{totalPriceCart cartOfUser}}</h4>
+            <input type='number' name='totalPrice' id='totalPrice' value='{{totalPrice cartOfUser}}' hidden />
+        </div>
+
+    </div>
+</form>
+<link rel='stylesheet' href='/css/shop/order.css' />
+<script>
+    Validator({ form: '#form--order', errSelector: '.span-message', rules:
+    [Validator.isRequired('#name'),Validator.isRequired('#email'),Validator.isRequired('#phone'),Validator.isRequired('#address')]});
+</script>

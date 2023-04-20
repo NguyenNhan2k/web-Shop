@@ -1,0 +1,32 @@
+{{>toastMessage message}}
+<div class='table_product'>
+    <div class='title'>
+        <h2>Category Details</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button><a href='/category'>Quay lại</a></button>
+
+        </div>
+
+    </div>
+    <div class='form-addCategory'>
+        <form method='post' class='category__add' action='/category/update'>
+            <label for='category'>Name: </label>
+            <input
+                id='category'
+                name='category'
+                type='text'
+                placeholder='{{category.name}}'
+                value='{{category.name}}'
+            />
+            <input id='_id' name='_id' type='text' value='{{category._id}}' hidden='true' />
+            <button type='submit'>Update</button>
+        </form>
+
+    </div>
+    <div class='addmargin'>
+        a
+    </div>
+</div>

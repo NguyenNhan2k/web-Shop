@@ -1,0 +1,137 @@
+{{> toastMessage message}}
+
+<form action="/cart/add" method="post" class='contain-detail' id="form-add-cart">
+    <div class='product-Img'>
+        {{#each product.img}}
+            <img src='/img/products/{{this}}' alt='' />
+        {{/each}}
+    </div>
+    <div class='product-detail'>
+        <div class='product-title'>
+            {{product.title}}
+        </div>
+        <div class='product-price'>
+            <p class='product__export--price'>{{sale product.export_price product.sale}}</p>
+            <i class='product__sale--price'>{{convertToVND product.export_price}}</i>
+        </div>
+        <div class='product-price__sticker'>
+            <i>Giảm: {{priceSale product.export_price product.sale}}</i>
+            <span class='price__sticker'>- {{product.sale}}%</span>
+        </div>
+        <div class='product-description'>
+            {{product.description}}
+        </div>
+        <div class='product-option'>
+            <div class='product-option-rate'>
+                <div class='rate--title'>
+                    Đánh giá :
+                </div>
+                <div class='product-option-rateStart'>
+                    {{totalRate product.rate}} / 5 điểm || {{rate}} lượt đánh giá
+                </div>
+            </div>
+            <div class='product-option-size'>
+                <div class='size--title'>
+                    Kích thước:
+                </div>
+                <div class='select--size'>
+                    {{#each product.size}}
+                        <div class='size--detail {{checkDisableSize this.count}}'>
+                            <input type='radio' name='size' id='size{{this.name}}' hidden value='{{this._id}}' class='inputSize' />
+                            <label class='label-size'>{{this.name}}
+                                <div class='sticker-check'>
+                                    <i class='fa-solid fa-check logo-check' ></i>
+                                </div>
+                            </label>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class='product-option-quantity'>
+                <div class='quantity--title'>Số lượng: </div>
+                <div class='quantity--input'>
+                    <div class='minus'><i class='fa-solid fa-minus'></i></div>
+                    <input type='number' id='quantity' name='quantity' value='1' />
+                    <div class='plus'><i class='fa-solid fa-plus'></i></div>
+                </div>
+            </div>
+        </div>
+        <div class='product-btn'>
+            <button class='product-btn__addCart' type="submit">Thêm vào giỏ hàng</button>
+            <div class='product-btn__buyCart'>Mua Ngay</div>
+        </div>
+    </div>
+
+</form>
+<script>
+    const buy = document.querySelector('.product-btn__buyCart')
+    const formAddCart = document.querySelector('#form-add-cart')
+    buy.addEventListener('click',(e)=>{
+        formAddCart.action = '/cart/add?_buyNow'
+        formAddCart.submit()
+    })
+</script>
+<form action="/rate/{{product._id}}" method="post" class="contain--feedback">
+    <h2>Đánh giá sản phẩm</h2>
+    <div class="first">
+        <div class="comment--feedback__rate">
+            <div class="rate--title">
+                <img src="/img/user/user.png" alt="">
+            </div>
+            <div class="rate--star">
+                <input type="radio" id="star5" name="rate" value="5" class="input-rate_star" checked>
+                <label for="star5" class="fa-solid fa-star"></label>
+                <input type="radio" id="star4" name="rate" value="4" class="input-rate_star">
+                <label for="star4" class="fa-solid fa-star"></label>
+                 <input type="radio" id="star3" name="rate" value="3" class="input-rate_star">
+                <label for="star3" class="fa-solid fa-star"></label>
+                <input type="radio" id="star2" name="rate" value="2" class="input-rate_star">
+                <label for="star2" class="fa-solid fa-star"></label>
+                <input type="radio" id="star1" name="rate" value="1" class="input-rate_star">
+                <label for="star1" class="fa-solid fa-star"></label>
+            </div>
+    </div>
+     <div class="comment--feedback">
+            <input class="comment--feedback__input" name="comment" placeholder="Bình luận công khai bằng nguyễn nhân"></input>
+            <button type="submit" class="comment--feedback__btn">
+                Comment
+            </button>
+    </div>
+    </div>
+    <hr>
+    <div class="list--feedback">
+        {{#if product.rate}}
+            {{#each product.rate}}
+                <div class="feedback-user">
+                    <div class="user-img"><img src="/img/user/{{this.id_user.images}}" alt=""></div>
+                    <div class="user-contain">
+                        <div class="first-contain">
+                            <div class="user-name">{{this.id_user.name}}</div>
+                            <div class="user-comment">
+                                {{this.comment}}
+                            </div>
+                            <div class="time-ago">
+                               {{timeAgo this.createdAt}}
+                            </div>
+                        </div>
+                       <div class="second-contain">
+                            <div class="second-contain__btn">
+                                <a >Xóa *</a>
+                                <a>Sửa</a>
+                            </div>
+                            <div class="rate-product">
+                               {{{rateStar this.rate}}}
+                            </div>
+                        </div>
+                       </div>
+                    
+                </div>
+            {{/each}}
+        {{else}}
+            <p>Hãy trở thành người bình luận đầu tiên.</p>
+        {{/if}}
+    </div>
+</form>
+<script src='/js/clickSize.js'>
+
+</script>

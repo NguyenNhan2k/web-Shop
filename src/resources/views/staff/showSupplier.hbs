@@ -1,0 +1,93 @@
+{{>toastMessage message}}
+<form class='table_product' method="post" action="/supplier/handle-Action">
+    <div class='title'>
+        <h2>Supplier Products</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button>
+            <i class="fa-solid fa-plus add"></i>
+                <a href='/supplier/create'>Thêm</a>
+            </button>
+            <button><i class="fa-solid fa-trash trash"></i><a href='/supplier/trash'>Thùng Rác</a>
+            <p class="countTrash">{{countSupplier}}</p>
+            </button>
+        </div>
+        <div class='search__products'>
+            <label>
+                <input type='text' placeholder='Searching...' />
+                <i class='fa-solid fa-magnifying-glass fa-table'></i>
+            </label>
+        </div>
+
+    </div>
+    <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <select name="action" class="select-Action" id="action" required>
+            <option value="" >-- Hành động --</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button type="submit" class="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Tên NCC {{{sortable 'name' _sort}}}</th>
+                <th>Địa chỉ {{{sortable 'address' _sort}}}</th>
+                <th>Phone{{{sortable 'phone' _sort}}}</th>
+                <th>Email{{{sortable 'email' _sort}}}</th>
+                <th>Xem</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+
+            </tr>
+            {{#if supplier}}
+            {{#each supplier}}
+                <tr>
+                    <td> 
+                        <div class="form-checkAll">
+                            <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="suppliers" class="form-check-input">
+                        </div>
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.email}}</td>
+                    <td>
+                        <a href='/supplier/{{this._id}}'><i class='fa-solid fa-eye'></i></a>
+                    </td>
+                    <td>
+                        <a href=''><i class='fa-solid fa-pen'></i></a>
+                    </td>
+                    <td>
+                        <button id='delete' data-id='{{this._id}}'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            {{else}}
+
+            <td colspan="10">Bạn chưa có nhà cung cấp?Hãy thêm NCC!</td>
+            {{/if}}
+        </table>
+    </div>
+    <div class="paging">
+         {{#if supplier}}
+            <ul>
+                {{{pageView _page paging}}}
+            </ul>
+        {{else}}
+            <div></div>
+        {{/if}}
+    </div>
+    <div class="temp">.</div>
+</form>
+<script src='/js/modalDelete.js'>
+
+</script>

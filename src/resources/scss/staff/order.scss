@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:wght@100;200;300&display=swap');
+@import '../variable';
+
+.detail--order {
+    width: 95%;
+    height: 100%;
+    margin: 25px;
+    margin-left: 25px;
+    display: block;
+    margin-top: 80px;
+    background-color: rgb(226, 225, 225);
+    .title {
+        display: flex;
+        position: relative;
+        h2 {
+            padding: 0 10px;
+            color: black;
+            height: 60px;
+            white-space: nowrap;
+        }
+        .order--btn {
+            position: absolute;
+            right: 0;
+            margin-right: 50px;
+
+            select {
+                margin-top: 15px;
+                color: #4f4f4f;
+                height: 35px;
+                text-align: center;
+                padding: 0 5px;
+                option {
+                    color: #4f4f4f;
+                    text-align: center;
+                    border-bottom: 1px solid #cccc;
+                }
+            }
+            button {
+                height: 35px;
+                background-color: $backgroud-nav-color;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                padding: 0 10px;
+                &:hover {
+                    background-color: $backgroud-nav-color__hover;
+                }
+            }
+        }
+    }
+    .dateShip {
+        display: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: 15px 50px;
+        border-bottom: 1px solid #cccc;
+        border-radius: 5px;
+        background-color: #4e72dfda;
+
+        label {
+            margin-left: 15px;
+        }
+        input {
+            width: 200px;
+            height: 40px;
+            margin-left: 15px;
+            margin-top: 10px;
+            color: #4f4f4f;
+            padding-left: 15px;
+        }
+    }
+    .detail-orderer {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        margin: 15px 50px;
+        border-bottom: 1px solid #cccc;
+        border-radius: 5px;
+        background-color: #4e72dfda;
+
+        .detail-orderer__first,
+        .detail-orderer__second {
+            width: 50%;
+            border-right: 1px solid #cccc;
+            div {
+                padding-left: 10px;
+                color: white;
+                border-bottom: 1px solid #cccc;
+                display: flex;
+                label {
+                    margin-right: 15px;
+                    margin-left: 15px;
+                }
+                i {
+                    cursor: pointer;
+                    margin-top: 18px;
+                }
+                input {
+                    height: 35px;
+                    width: 280px;
+                    margin: 0 20px;
+                    margin-top: 10px;
+                    color: #4f4f4f;
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+    .receiptDetail {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: block;
+        margin: 15px 50px;
+        border-bottom: 1px solid #cccc;
+        border-radius: 5px;
+        background-color: #4e72dfda;
+        p {
+            color: #fff;
+            border-bottom: 1px solid #cccc;
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+    .detail--products,
+    .tables,
+    .add--product {
+        padding: 0 50px;
+        .add--product__title {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #4f4f4f8e;
+            border-bottom: 1px solid #4f4f4f8e;
+            h3 {
+                color: #4f4f4f;
+            }
+            button {
+                height: 40px;
+                background-color: $backgroud-nav-color;
+                border: none;
+                cursor: pointer;
+                margin-top: 8px;
+                border-radius: 5px;
+                padding: 0 10px;
+                &:hover {
+                    background-color: $backgroud-nav-color__hover;
+                }
+            }
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            a {
+                text-align: center;
+                line-height: 35px;
+                font-size: 16px;
+                cursor: pointer;
+                color: $backgroud-nav-color;
+                text-decoration: none;
+                i {
+                    color: $backgroud-nav-color;
+                }
+                .remove {
+                    cursor: pointer;
+                    color: #f87c59;
+                }
+            }
+            .btn-update {
+                background-color: rgba(204, 204, 204, 0.185);
+            }
+            button {
+                text-align: center;
+                line-height: 35px;
+                font-size: 16px;
+                cursor: pointer;
+                color: $backgroud-nav-color;
+                border: none;
+                i {
+                    color: $backgroud-nav-color;
+                }
+                .remove {
+                    color: #f87c59;
+                }
+            }
+        }
+        .test {
+            color: #050505;
+        }
+
+        th {
+            color: #fff;
+            text-align: center;
+            background-color: $backgroud-nav-color;
+            font-size: 15px;
+            border-left: 1px solid rgba(204, 204, 204, 0.651);
+            font-weight: 300;
+            border-bottom: 1px solid #cccc;
+        }
+        td {
+            color: black;
+            background-color: rgb(226, 225, 225);
+            text-align: center;
+            border-bottom: 1px solid rgb(172, 167, 167);
+            font-size: 15px;
+            border-bottom: 1px solid #cccc;
+            span {
+                color: black;
+            }
+            select {
+                color: black;
+                width: 50px;
+                height: 30px;
+                font-size: 15px;
+                text-align: center;
+                option {
+                    color: black;
+                    font-size: 15px;
+                    text-align: center;
+                }
+            }
+            #product {
+                width: 80%;
+            }
+            #sizeAdd {
+                width: 60%;
+            }
+            input {
+                color: black;
+                width: 100px;
+                height: 30px;
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+    }
+}

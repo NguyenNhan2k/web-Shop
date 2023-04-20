@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:wght@100;200;300&display=swap');
+@import '../variable';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: $text-color;
+    line-height: 60px;
+}
+.container {
+    width: 100%;
+    position: relative;
+}
+.navigation {
+    position: fixed;
+    width: 240px;
+    height: 100%;
+    transition: 0.5s;
+    background-color: $backgroud-nav-color;
+    ul {
+        position: absolute;
+        width: 100%;
+
+        li {
+            position: relative;
+            width: 100%;
+            display: flex;
+            list-style: none;
+            &:hover:nth-child(1) {
+                background: transparent;
+            }
+            &:hover {
+                background-color: $backgroud-nav-color__hover;
+                span {
+                    color: $text-color__hover;
+                }
+            }
+            a {
+                position: relative;
+                display: block;
+                width: 100%;
+                display: flex;
+                text-decoration: none;
+                .header {
+                    padding-left: 10px;
+                }
+                .icon {
+                    position: relative;
+                    display: block;
+                    min-width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    text-align: center;
+                    .fa {
+                        height: 60px;
+                        line-height: 60px;
+                        font-size: 24px;
+                    }
+                }
+                .title {
+                    position: relative;
+                    display: block;
+                    padding: 0 10px;
+                    height: 60px;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+.navigation.active {
+    width: 60px;
+}
+.main {
+    position: absolute;
+    width: calc(100% - 240px);
+    left: 240px;
+    min-height: 100vh;
+    background: $backgroud-main;
+    transition: 0.5s;
+    .topbar {
+        width: 100%;
+        background: #fff;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .toggle {
+            width: 60px;
+            position: relative;
+            height: 60px;
+            cursor: pointer;
+            &::before {
+                content: '\f0c9';
+                font-family: fontAwesome;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                line-height: 60px;
+                font-size: 24px;
+                text-align: center;
+                color: $text-color-main;
+            }
+        }
+        .search {
+            position: relative;
+            label {
+                line-height: 60px;
+
+                input {
+                    height: 35px;
+                    width: 300px;
+                    padding-left: 10px;
+                    border-radius: 7px;
+                    border: none;
+                    outline: 1px solid #ccc;
+                    color: $text-color-main;
+                    background-color: $backgroud-main;
+                }
+                i {
+                    color: $text-color-main;
+                    font-size: 24px;
+                    line-height: 60px;
+                }
+                .fa {
+                    position: absolute;
+                    right: 5px;
+                    top: -12px;
+                }
+            }
+        }
+        .user {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}
+.main.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}

@@ -1,0 +1,167 @@
+@import '../variable';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:ital,wght@0,600;1,300;1,400;1,700&display=swap');
+.order {
+    display: flex;
+    color: #333333;
+    height: 89%;
+    .shipInfo {
+        flex: 3;
+        border-right: 1px solid #cccccc;
+        .Shop--name {
+            font-size: 26px;
+            padding: 20px 30px;
+        }
+        .shipInfo--title {
+            font-size: 22px;
+            padding: 0px 30px;
+            color: #333333c4;
+            width: 300px;
+        }
+        .shipInfo--container {
+            margin-top: 15px;
+            margin-left: 32px;
+            width: 100%;
+            display: block;
+            div {
+                margin-top: 20px;
+                position: relative;
+                input {
+                    width: 80%;
+                    border: 1px solid #333333;
+                    outline: none;
+                    height: 40px;
+                    border-radius: 5px;
+                    font-size: 20px;
+                    padding-left: 20px;
+                    &:focus {
+                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                    }
+                }
+                .span-message {
+                    font-size: 14px;
+                    position: absolute;
+                    width: 100%;
+                    right: 0;
+                    bottom: -18px;
+                    color: rgb(247, 56, 30);
+                    padding: 5px 5px;
+                    height: 20px;
+                    line-height: 20px;
+                }
+            }
+            .shipInfo--email__Phone {
+                display: flex;
+                width: 80%;
+
+                #email {
+                    flex: 2;
+                }
+                #phone {
+                    margin-left: 10px;
+                    flex: 1;
+                }
+            }
+        }
+        .shipInfo--Btn {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            button {
+                margin-right: 170px;
+                height: 50px;
+                width: 250px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                color: aliceblue;
+                background-color: #333333;
+                font-size: 20px;
+                &:hover {
+                    background-color: #333333d0;
+                }
+            }
+            a {
+                font-size: 20px;
+                line-height: 50px;
+                i {
+                    line-height: 50px;
+                    text-align: center;
+                    font-size: 22px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .order--cart {
+        flex: 2;
+        background-color: #bedbeb25;
+        .order--products {
+            margin-top: 50px;
+            margin: 30px;
+            border-bottom: 1px solid #3333332c;
+            .order-product__detail {
+                display: flex;
+                position: relative;
+                margin-bottom: 20px;
+                .order--img {
+                    position: relative;
+                    img {
+                        height: 100px;
+                        width: 90px;
+                        border-radius: 10px;
+                        border: 1px solid #333333;
+                    }
+                }
+                .order--product__price {
+                    margin-left: 140px;
+                    margin-top: 30px;
+                    font-size: 18px;
+                }
+                .order--quantity {
+                    position: absolute;
+                    top: -5px;
+                    text-align: center;
+                    color: white;
+                    border-radius: 50%;
+                    background-color: #333333;
+                    width: 20px;
+                    right: -5;
+                }
+            }
+            .order--product__contain {
+                margin-left: 15px;
+                font-size: 20px;
+
+                color: #333333;
+                margin-top: 20px;
+                .order--product__size {
+                    font-size: 18px;
+                    color: #33333398;
+                }
+            }
+        }
+        .order--sale {
+            display: flex;
+            margin-left: 25px;
+            font-size: 20px;
+            p {
+                margin-right: 60%;
+            }
+            i {
+                text-decoration: line-through;
+                font-size: 18px;
+            }
+        }
+        .order--provision {
+            display: flex;
+            margin-left: 25px;
+            font-size: 20px;
+            p {
+                margin-right: 53%;
+            }
+            h4 {
+                font-size: 18px;
+            }
+        }
+    }
+}

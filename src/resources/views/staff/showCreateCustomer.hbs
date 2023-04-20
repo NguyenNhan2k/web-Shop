@@ -1,0 +1,99 @@
+{{> toastMessage message }}
+<div class='table_product'>
+      <div class='addmargin--top'>
+        a
+    </div>
+    <div class='title--profile'>
+        <h2>Create User</h2>
+    </div>
+    <form method='post' class='form-profile' action="/customers/create" enctype="multipart/form-data">
+            <div class='form--profile'>
+                <div class="form--profile__img"><img src="/img/user/user.png" alt="" class="img-profile"></div>
+                <div class="form--profile__name"><h3></h3></div>
+                <div class="form--profile__role">Nhân viên bán hàng</div>
+                <div class="form--profile__btn">
+                    <label for='images' class='upload_img--profile'>
+                        <i class='fa-solid fa-upload icon'></i>Choose a photos
+                    </label>
+                    <input
+                        type='file'
+                        id='images' 
+                        name='images'
+                        class='images--profile'
+                        accept='image/png, image/jpeg'
+                        
+                    />
+                </div>
+            </div>
+            <div class='form--profile__contain'>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Full Name</label>
+                    <input id='name' 
+                        name='name' type="text" class="input--profile">
+                </div>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Email</label>
+                    <input id='email' 
+                        name='email' type="email" class="input--profile" >
+                </div>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Phone</label>
+                    <input id='phone' 
+                        name='phone' type="phone" class="input--profile" >
+                </div>
+                <div class="form--profile__ground">
+                    <label for=""class="label--profile">Address</label>
+                    <input id='address' 
+                        name='address' type="text" class="input--profile">
+                </div>
+                 <div class="form--profile__ground">
+                    <label for=""class="label--profile">Password</label>
+                    <input id='password' 
+                        name='password' type="password" class="input--profile" autocomplete>
+                        <i class="fa-solid fa-eye eye-password" ></i>
+                </div>
+                <div class="form--profile__ground">
+                    <label for=""class="label--profile">Confirm</label>
+                    <input id='confirm' 
+                        name='confirm' type="password" class="input--profile" autocomplete>
+                </div>
+                 <div class="form--profile__ground btn" >
+                    <button class="submit--profile" type="submit">Thêm</button>
+                 </div>
+            </div>
+        </form>
+    <div class='addmargin'>
+        a
+    </div>
+</div>
+<script>
+    function previewProfile () {
+    var upload_img ='';
+        const uploadInput = document.querySelector('.images--profile');
+        const imgProfile = document.querySelector('.img-profile');
+        uploadInput.addEventListener('change', ()=> {
+            const reader = new FileReader()
+            reader.onload =() =>{
+                imgProfile.setAttribute('src',reader.result)
+            }
+            reader.readAsDataURL(uploadInput.files[0]);
+        })
+    }
+    function viewPassword () {
+        const password = document.querySelector('#password')
+        const eyeIcon = document.querySelector('.eye-password')
+        eyeIcon.addEventListener('click',()=>{
+            const type = password.type
+            if(type =='password'){
+                password.type = 'text'
+            }else {
+                password.type = 'password'
+            }
+        })
+        
+       
+    }
+    viewPassword ()
+    previewProfile ();
+   
+</script>

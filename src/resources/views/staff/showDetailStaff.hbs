@@ -1,0 +1,88 @@
+{{> toastMessage message }}
+<div class='table_product'>
+      <div class='addmargin--top'>
+        a
+    </div>
+    <div class='title--profile'>
+        <h2>User profile</h2>
+    </div>
+    <form method='post' class='form-profile' action="/staff/update" enctype="multipart/form-data">
+            <div class='form--profile'>
+                <div class="form--profile__img"><img src="/img/user/{{staff.images}}" alt="" class="img-profile"></div>
+                <div class="form--profile__name"><h3>{{staff.name}}</h3></div>
+                <div class="form--profile__role">Nhân viên bán hàng</div>
+                <div class="form--profile__btn">
+                    <label for='images' class='upload_img--profile'>
+                        <i class='fa-solid fa-upload icon'></i>Choose a photos
+                    </label>
+                    <input
+                        type='file'
+                        id='images' 
+                        name='images'
+                        class='images--profile'
+                        accept='image/png, image/jpeg'
+                        
+                    />
+                     <input
+                        type='text'
+                        id='id' 
+                        name='id'
+                        hidden
+                        value="{{staff._id}}"   
+                    />
+                    <input
+                        type='text'
+                        value="{{staff.images}}" 
+                        id='img' 
+                        name='img'
+                        class='images--profile'
+                        style="display:none ;"
+                    />
+                </div>
+            </div>
+            <div class='form--profile__contain'>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Full Name</label>
+                    <input id='name' 
+                        name='name' type="text" class="input--profile" value="{{staff.name}}">
+                </div>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Email</label>
+                    <input id='email' 
+                        name='email' type="text" class="input--profile" value="{{staff.email}}">
+                </div>
+                <div class="form--profile__ground">
+                    <label for="" class="label--profile">Phone</label>
+                    <input id='phone' 
+                        name='phone' type="text" class="input--profile" value="{{staff.phone}}">
+                </div>
+                <div class="form--profile__ground">
+                    <label for=""class="label--profile">Address</label>
+                    <input id='address' 
+                        name='address' type="text" class="input--profile" value="{{staff.address}}">
+                </div>
+                 <div class="form--profile__ground btn" >
+                    <button class="submit--profile" type="submit">Update</button>
+                 </div>
+            </div>
+        </form>
+    <div class='addmargin'>
+        a
+    </div>
+</div>
+<script>
+    function previewProfile () {
+    var upload_img ='';
+        const uploadInput = document.querySelector('.images--profile');
+        const imgProfile = document.querySelector('.img-profile');
+        uploadInput.addEventListener('change', ()=> {
+            const reader = new FileReader()
+            reader.onload =() =>{
+                imgProfile.setAttribute('src',reader.result)
+            }
+            reader.readAsDataURL(uploadInput.files[0]);
+        })
+    }
+    previewProfile ();
+   
+</script>

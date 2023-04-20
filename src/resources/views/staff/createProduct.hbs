@@ -1,0 +1,85 @@
+{{> toastMessage message }}
+<div class='table_product'>
+    <div class='title'>
+        <h2>Create Product</h2>
+        <hr />
+    </div>
+    <div class='formCreateProduct'>
+        <form method='post' enctype='multipart/form-data' id="form-addProduct" action="/products/create">
+            <div class='formCreateProduct__first'>
+                <div class='form-groud '>
+                    <input type='text' name='title' id='title' placeholder='Title for product' />
+                    <label for='' class='lable-groud'>Title</label>
+                    <span class="span-message"></span>
+                </div>
+                <div class='form-groud'>
+                    <label for='' class='lable-groud'>Export price</label>
+                    <input type='text' placeholder='Export price' name='export_price' id='export_price' />
+                    <div class='price__VND'>VND</div>
+
+                </div>
+                <div class='form-groud'>
+                    <label for='images' class='upload_img'>
+                        <i class='fa-solid fa-upload icon'></i>Choose a photos
+                    </label>
+                    <input
+                        type='file'
+                        placeholder='000.000'
+                        id='images'
+                        name='images' 
+                        class='images'
+                        multiple='multiple'
+                        onchange='valueImages()'
+                        accept='image/png, image/jpeg'
+                    />
+                    <span class='message__images'>No a file</span>
+                </div>
+                <div class='form-groud'>
+                    <button class='submit' type='submit'>Submit</button>
+                </div>
+            </div>
+            <div class='hr'></div>
+            <div class='formCreateProduct__first'>
+                <div class='form-groud'>
+                    <label for='' class='lable-groud'>Sale</label>
+                    <input type='text' placeholder='100' name='sale' id='sale' />
+                    <div class='price__VND'>%</div>
+                </div>
+                <div class='form-groud'>
+                    <label for='' class='lable-groud'>Unit</label>
+                    <input type='text' placeholder='Name' name='unit' id='unit' />
+                </div>
+
+                <div class='form-groud'>
+                    <select id='category' name='category'>
+                        {{#each categories}}
+                            <option
+                                value='{{this._id}}'
+                                id='category'
+                                name='category'
+                                class='size__option'
+                            >{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    <label for='' class='lable-groud'>Category</label>
+                </div>
+
+                <div class='form-groud'>
+                    <label for='description' class='label_description'>Description</label>
+                    <textarea name='description' class='description' id='description' cols='35' rows='5'></textarea>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    Validator({
+        form: '#form-addProduct',
+        errSelector: '.span-message',
+        rules: [
+            Validator.isRequired('#title'),
+        ]
+    })
+</script>

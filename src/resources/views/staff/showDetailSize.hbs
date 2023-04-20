@@ -1,0 +1,36 @@
+{{> toastMessage message }}
+<div class='table_product'>
+    <div class='title'>
+        <h2>Detail Size</h2>
+        <hr />
+    </div>
+    <div class='form-addSize'>
+        <form method='post' class='category__add' action="/sizeProduct/update">
+            <div class='form_ground'>
+                <input type='text' id='name' value="{{size.name}}" name='name' />
+                 <input type='text' id='id_size' value="{{size._id}}" name='id_size' hidden/>
+                <label for='name'>Size</label>
+            </div>
+            <div class='form_ground'>
+                <label for='description' class='label_description'>Description</label>
+                <textarea
+                    type='text'
+                    id='description'
+                    name='description'
+                    placeholder='Size of the product'
+                    cols='35'
+                    rows='5'
+                >
+                {{size.description}}
+                </textarea>
+            </div>
+            <div class='form_ground'>
+                <button class='back'><a href=''>Trở về</a></button>
+                <button type='submit' class='add'>Update</button>
+            </div>
+        </form>
+    </div>
+    <div class='addmargin'>
+        a
+    </div>
+</div>

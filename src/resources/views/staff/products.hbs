@@ -1,0 +1,106 @@
+{{>toastMessage message}}
+<form class='table_product' method="post" action="/products/handle-Action">
+    <div class='title'>
+        <h2>Tables Products</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button>
+            <i class="fa-solid fa-plus add"></i>
+                <a href='/products/create'>Thêm</a>
+            </button>
+            <button>
+            <i class="fa-solid fa-trash trash"></i><a href='/products/trash'>Thùng Rác</a>
+            <p class="countTrash">{{countProduct}}</p>
+            </button>
+        </div>
+        <div class='search__products'>
+            <div class="header-search">
+                <input type='text' class="search-input" id="search" placeholder='Searching...' />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="search-contain">
+                {{#each searchProduct}}
+                 <a href="?_search&slug={{this.slug}}" class="search-contain__product">
+                    <div class="first-product"><img src="/img/products/{{getOneImg this.img}}" alt=""></div>
+                    <div class="second-product" data-id="{{this._id}}">
+                        <div class="title-product">{{this.title}}</div>
+                        <div class="price-product">{{this.export_price}}</div>
+                    </div>
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <select name="action" class="select-Action" id="action" required>
+            <option value="" >-- Hành động --</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button type="submit" class="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Tên SP {{{sortable 'title' _sort }}}</th>
+                <th>Giá bán{{{sortable 'export_price' _sort }}}</th>
+                <th>Đơn vị tính{{{sortable 'unit' _sort }}}</th>
+                <th>
+                    Tổng số lượng
+                </th>
+                <th>Trạng thái</th>
+                <th>Xem</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+
+            </tr>
+            {{#if product}}
+            {{#each product}}
+                <tr>
+                    <td> 
+                        <div class="form-checkAll">
+                            <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="products" class="form-check-input">
+                        </div>
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{convertToVND this.export_price}}</td>
+                    <td>{{this.unit}}</td>
+                    <td>{{countSize this.size}}</td>
+                    <td>Đang bán</td>
+                    <td>
+                        <a href='/products/{{this.slug}}'><i class='fa-solid fa-eye'></i></a>
+                    </td>
+                    <td>
+                        <a href=''><i class='fa-solid fa-pen'></i></a>
+                    </td>
+                    <td>
+                        <button id='delete' data-id='{{this._id}}'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            {{else}}
+
+            <td colspan="10">Bạn chưa có sản phẩm nào?Hãy thêm sản phẩm!</td>
+            {{/if}}
+        </table>
+    </div>
+    <div class="paging">
+        <ul>
+          {{{pageView _page paging}}}
+        </ul>
+    </div>
+    <div class="temp">.</div>
+</form>
+<form id="form-search" ></form>
+<script src='/js/search.js'>
+</script>
+<script src='/js/modalDelete.js'>
+</script>

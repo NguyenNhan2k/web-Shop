@@ -1,0 +1,39 @@
+<div class='table_product'>
+    <div class='title'>
+        <h2>Tables Products</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button><a href='/category'>Thêm sản phầm</a></button>
+            <button>Thùng rác</button>
+        </div>
+        <div class='search__products'>
+            <label>
+                <input type='text' placeholder='Searching...' />
+                <i class='fa-solid fa-magnifying-glass fa-table'></i>
+            </label>
+        </div>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Tên SP</th>
+                <th>Actions</th>
+
+            </tr>
+            {{#each product}}
+                <tr>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.title}}</td>
+                    <td>
+                        <button> <a href=''>Sửa</a> </button>
+                        <button> <a href=''>Xóa</a> </button>
+                        <button> <a href='/staff/products/{{this.title}}'>Xem</a> </button>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

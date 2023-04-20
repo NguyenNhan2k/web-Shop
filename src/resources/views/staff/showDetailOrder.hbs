@@ -1,0 +1,151 @@
+<form action='/order/handle-detailOrder' method='post' class='detail--order'>
+    <div class='title'>
+        <h2>Thông Tin đơn hàng</h2>
+        <div class='order--btn'>
+            <div>
+                <select id='actions' name='actions' required>
+                    <option value=''>--Hành động---</option>
+                    <option value='update'>Update đơn hàng</option>
+                    {{#each status}}
+                        <option value='{{this.name}}|{{this._id}}'>{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <input type='text' value='{{order._id}}' name='order' id='order' hidden />
+                <button type='submit'>Thực hiện</button>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class='dateShip'>
+        <label for=''>Ngày giao hàng: </label>
+        <input type='date' name='dateShip' id='dateShip' />
+    </div>
+    <div class='detail-orderer'>
+        <div class='detail-orderer__first'>
+            <div class='orderer--idOrder'>Mã đơn hàng: {{order._id}} </div>
+            <div class='orderer--dateOrder'>Ngày đặt:
+                <label for=''>{{convertToDate order.createdAt}}</label></div>
+            <div class='orderer--email' class='label--update'>Email:
+                <label for='' class='label--update'>{{order.email}}</label>
+                <input type='email' id='email' name='email' value='{{order.email}}' class='input-order' />
+                <i id='update-order' class='fa-solid fa-pen'></i>
+            </div>
+            <div class='orderer--date_ship' class='label--update'>Ngày giao:
+                {{#if order.date_ship}}
+                    <label for='' class='label--update'>{{convertToDate order.date_ship}}</label>
+                    <input type='date' id='dateShip' name='dateShip' value='{{order.date_ship}}' class='input-order' />
+                    <i id='update-order' class='fa-solid fa-pen'></i>
+                {{else}}
+                    <label for='' class='label--update'>Đang chờ duyệt</label>
+                    <i id='update-order' class='fa-solid fa-pen'></i>
+                    <input type='text' id='dateShip' name='dateShip' value='' class='input-order' disabled />
+                {{/if}}
+
+            </div>
+        </div>
+        <div class='detail-orderer__second'>
+            <div class='orderer--name'>Khách hàng:
+                <label for='' class='label--update'>{{order.name}}</label>
+                <input type='text' id='name' name='name' value='{{order.name}}' class='input-order' />
+                <i id='update-order' class='fa-solid fa-pen'></i></div>
+            <div class='orderer--idOrder' class='label--update'>Phone:
+                <label for='' class='label--update'>{{order.phone}}</label>
+                <input type='number' id='phone' name='phone' value='{{order.phone}}' class='input-order' />
+                <i id='update-order' class='fa-solid fa-pen'></i></div>
+            <div class='orderer--Status' class='label--update'>Trạng thái đơn hàng:
+                {{#if order.status}}
+                    <label for='' class='label--update'>{{order.status.name}}</label>
+                    <i id='update-order' class='fa-solid fa-pen' hidden></i>
+                    <input type='text' id='status' name='status' value='{{order.status._id}}' class='input-order' />
+                {{else}}
+                    <p>Đang chờ xác nhận</p>
+
+                {{/if}}
+            </div>
+            <div class='orderer--address'>Địa chỉ:
+                <label for='' class='label--update'> {{order.address}}</label>
+                <input type='text' id='address' name='address' value='{{order.address}}' class='input-order' />
+                <i id='update-order' class='fa-solid fa-pen'></i>
+            </div>
+        </div>
+    </div>
+
+    <div class='detail--products'>
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Tổng giá</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+            {{#each order.id_orderInfo}}
+                <tr>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.id_Size.id_product.title}}</td>
+                    <td style='display: none;'><input
+                            type='text'
+                            name='id_orderInfo'
+                            id='id_orderInfo'
+                            value='{{this._id}}'
+                            hidden
+                        /></td>
+                    <td><span class='span-order'>{{this.id_Size.name}}</span>
+                        <select name='size' id='size' class='size-order'>
+                            {{#each this.id_Size.id_product.size}}
+                                <option value='{{this._id}}'>{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td><span class='span-order__quantity'>{{this.quantity}}</span>
+                        <input
+                            type='number'
+                            name='quantity'
+                            id='quantity'
+                            value='{{this.quantity}}'
+                            class='quantity-order'
+                        />
+                    </td>
+                    <td>{{convertToVND this.export_price}}</td>
+                    <td>{{totalMoney this.export_price this.quantity}}</td>
+                    <td>
+                        <button class='btn-update'><i class='fa-solid fa-pen'></i></button>
+                    </td>
+                    <td>
+                        <button id='btn-delete'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan='7' style='margin-left:50px;color:#4f4f4f;font-size:20px;'>Tổng tiền:
+                    {{convertToVND order.totalPrice}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class='add--product'>
+        <div class='add--product__title'>
+            <h3>
+                Bảng thêm sản phẩm
+            </h3>
+            <button class='add-product__order' onclick='handleAddProduct(event,{{handleAddProduct products}})'>Thêm sản
+                phẩm</button>
+        </div>
+        <table class='table--add__product'>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+                <th>Xóa</th>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type='text/handlebar-template' id='selectPersonTemplate'></script>
+<link rel='stylesheet' href='/css/staff/order.css' />
+<script src='/js/handleUpdateOrder.js'>
+
+</script>

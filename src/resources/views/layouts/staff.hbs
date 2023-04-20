@@ -1,0 +1,35 @@
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>Document</title>
+        <link rel='stylesheet' href='/css/staff/staff.css' />
+        <link rel='stylesheet' href='/css/staff/delete.css' />
+        <link rel='stylesheet' href='/css/staff/createProduct.css' />
+        <link rel='stylesheet' href='/css/staff/detailsProduct.css' />
+        <link rel='stylesheet' href='/css/staff/addSize.css' />
+        <link rel='stylesheet' href='/css/staff/toastMessage.css' />
+
+        <link href='/font/fontawesome-free-6.1.2-web/css/all.css' rel='stylesheet' />
+        <script src="/js/validForm.js"></script>
+    
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' />
+    </head>
+    <body>
+        {{>modal}}
+        <div class='container'>
+           {{> navication}}
+            <div class='main'>
+            {{> toastMessage message}}
+
+                {{> topbars}}
+                {{{body}}}
+            </div>
+        </div>
+
+    </body>
+
+<script src='/js/admin.js'></script>
+
+</html>

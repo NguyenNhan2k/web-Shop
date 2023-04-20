@@ -1,0 +1,73 @@
+<header class='header'>
+    <nav>
+        <div class='logo'>
+            <img src='/img/logo.png' alt='Loading logo ...' />
+        </div>
+        <div class='nav-list'>
+            <ul class='nav-list-item'>
+                <li class='nav-group'>
+                    <a href='/'>HOME</a>
+                    <span class='span-nav'></span>
+                </li>
+                <li class='nav-group'><a href='/news'>BLOG</a>
+                    <span class='span-nav'></span>
+                </li>
+                <li class='nav-group'>
+                    <a href='/products'> PRODUCT</a>
+                    <span class='span-nav'></span>
+                </li>
+                <li class='nav-group'><a href='/contact'>CONTACT</a>
+                    <span class='span-nav'></span>
+                </li>
+            </ul>
+        </div>
+        <i class='fa-solid fa-magnifying-glass icon-search'></i>
+        <div class='nav-last' id='nav-last'>
+            <div class='nav-search'>
+                <div class='search__products'>
+                    <div class='header-search'>
+                        <input type='text' class='search search-input' id='search' placeholder='Searching...' />
+                        <i class='fa-solid fa-magnifying-glass'></i>
+                    </div>
+                    <div class='search-contain'>
+                        {{#each searchProduct}}
+                            <a href='?_search&slug={{this.slug}}' class='search-contain__product'>
+                                <div class='first-product'><img
+                                        src='/img/products/{{getOneImg this.img}}'
+                                        alt=''
+                                    /></div>
+                                <div class='second-product' data-id='{{this._id}}'>
+                                    <div class='title-product'>{{this.title}}</div>
+                                    <div class='price-product'>{{this.export_price}}</div>
+                                </div>
+                            </a>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href='/cart' class='nav-cart'>
+            <i class='fa-solid fa-cart-shopping'></i>
+        </a>
+        <div class='nav-login' id='nav-login'>
+            {{#if user}}
+                <div class='nav-user'>
+                    <a href='#' class='nav-a'>{{user.name}}</a>
+                    <a href='#'><i class='fa-solid fa-user-large nav-i'></i></a>
+                    <div class='nav-dropbar'>
+                        <ul class='nav-dropbar__ul'>
+                            <li class='nav-dropbar__list'><a href='/customers/info'>Xem thông tin</a></li>
+                            <hr />
+                            <li class='nav-dropbar__list'><a href='/cart'>Xem giỏ hàng</a></li>
+                            <hr />
+                            <li class='nav-dropbar__list'><a href='/customers/logout'>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {{else}}
+                <a href='/login' class='login-header'>Login</a>
+                <a href='/register' class='register-header'>Register</a>
+            {{/if}}
+        </div>
+    </nav>
+</header>

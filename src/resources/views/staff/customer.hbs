@@ -1,0 +1,100 @@
+{{>toastMessage message}}
+<form class='table_product' method="post" action="/customers/handle-Action">
+    <div class='title'>
+        <h2>Tables Customers</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button>
+            <i class="fa-solid fa-plus add"></i>
+                <a href='/customers/showCreate'>Thêm</a>
+            </button>
+            <button>
+            <i class="fa-solid fa-trash trash"></i><a href='/customers/trash'>Thùng Rác</a>
+            <p class="countTrash">{{countCustomer}}</p>
+            </button>
+        </div>
+       <div class='search__products'>
+            <div class="header-search">
+                <input type='text' class="search-input" id="search" placeholder='Searching...' />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="search-contain">
+                {{#each search}}
+                 <a href="?_search&slug={{this._id}}" class="search-contain__product">
+                      <div class="first-product"><img src="/img/user/{{this.images}}" alt=""></div>
+                    <div class="second-product" data-id="{{this._id}}">
+                        <div class="title-product">{{this.name}}</div>
+                        <div class="price-product">{{this.phone}}</div>
+                    </div>
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+    <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <select name="action" class="select-Action" id="action" required>
+            <option value="" >-- Hành động --</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button type="submit" class="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Tên Khách hàng {{{sortable 'name' _sort}}}</th>
+                <th>Phone {{{sortable 'phone' _sort}}}</th>
+                <th>Email{{{sortable 'email' _sort}}}</th>
+                <th>Xem</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+
+            </tr>
+            {{#if customers}}
+            {{#each customers}}
+                <tr>
+                    <td> 
+                        <div class="form-checkAll">
+                            <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="customers" class="form-check-input">
+                        </div>
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.email}}</td>
+                    <td>
+                        <a href='/customers/{{this._id}}'><i class='fa-solid fa-eye'></i></a>
+                    </td>
+                    <td>
+                        <a href='/customers/{{this._id}}'><i class='fa-solid fa-pen'></i></a>
+                    </td>
+                    <td>
+                        <button id='delete-customer' data-id='{{this._id}}'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            {{else}}
+
+            <td colspan="10">Bạn chưa có khách nào?</td>
+            {{/if}}
+        </table>
+    </div>
+    <div class="paging">
+        <ul>
+         {{#if paging}} {{{pageView _page paging}}}{{/if}}
+        </ul>
+    </div>
+    <div class="temp">.</div>
+</form>
+<script src='/js/modalDelete.js'>
+</script>
+<script src='/js/search.js'>
+</script>

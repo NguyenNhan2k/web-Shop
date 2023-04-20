@@ -1,0 +1,31 @@
+<div id='toast'>
+    {{#if message}}
+        {{#if isSuccess}}
+            <div class='toast toast--{{type}}'>
+                <div class='toast__icon'>
+                    <i class='fas fa-check-circle'></i>
+                </div>
+                <div class='toast__body'>
+                    <div class='toast__msg'>{{message}}</div>
+                </div>
+                <div class='toast__close'>
+                    <i class='fas fa-times'></i>
+                </div>
+            </div>
+        {{else}}
+            <div class='toast toast--{{type}}'>
+                <div class='toast__icon'>
+                    <i class='fas fa-check-circle'></i>
+                </div>
+                <div class='toast__body'>
+                    <div class='toast__msg'>{{message}}</div>
+                </div>
+                <div class='toast__close'>
+                    <i class='fas fa-circle-exclamation'></i>
+                </div>
+            </div>
+        {{/if}}
+    {{else}}
+        <div></div>
+    {{/if}}
+</div>

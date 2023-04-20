@@ -1,0 +1,178 @@
+{{>toastMessage message}}
+<div class='container_product'>
+    <div class='container_product--img'>
+        <div class='main_img'>
+            <img src='/img/products/{{oneImg}}' alt='' class='img_feature' />
+            <button class='btn-prev'><i class='fa-solid fa-angle-left'></i></button>
+            <button class='btn-next'><i class='fa-solid fa-angle-right'></i></button>
+        </div>
+        <div class='list_img'>
+            {{#each other}}
+                <div class='div_img'>
+                    <img src='/img/products/{{this}}' class='' alt='' />
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class='container_product--details'>
+        <form action='/products/update?_method=PUT' method="post" enctype='multipart/form-data'>
+            <div class='form_grounds'>
+                <h2>Details</h2>
+            </div>
+            <div class='form_grounds'>
+                <div class='form-groud__first'>
+                    <input
+                        type='text'
+                        name='title'
+                        id='title'
+                        value='{{product.title}}'
+                        placeholder='Title for product'
+                    />
+                    <input
+                        type='text'
+                        name='id'
+                        id='id'
+                        value='{{product._id}}'
+                        placeholder='Title for product'
+                        hidden
+                    />
+                    <label for='' class='lable-groud'>Title</label>
+                </div>
+                <div class='separate'></div>
+                <div class='form-groud__seconds unit'>
+                    <label for='' class='lable-groud'>Unit</label>
+                    <input type='text' value='{{product.unit}}' name='unit' id='unit' />
+                </div>
+            </div>
+            <div class='form_grounds'>
+            
+                <div class='form-groud__seconds'>
+                    <label for='' class='lable-groud'>Sale</label>
+                    <input type='text' value='{{product.sale}}' name='sale' id='sale' />
+                    <div class='price__VND'>%</div>
+                </div>
+            </div>
+            <div class='form_grounds'>
+                <div class='form-groud__first'>
+                    <label for='' class='lable-groud'>Export price</label>
+                    <input
+                        type='text'
+                        value='{{product.export_price}}'
+                        name='export_price'
+                        id='export_price'
+                        accept='image/png, image/jpeg'
+                    />
+                    <div class='price__VND'>VND</div>
+                </div>
+                <div class='separate'></div>
+                <div class='form-groud__seconds'>
+                    <label for='' class='lable-groud'>Quantity</label>
+                    <input  type='text' name='quantity' id='quantity' value='{{countSize product.size}}' readonly />
+                </div>
+            </div>
+            <div class='form_grounds'>
+                <div class='form-groud__first'>
+                    <select id='category' name='category' class='category'>
+                        <option
+                            value='{{product.category}}'
+                            id='category'
+                            name='category'
+                            selected
+                            class='size__option'
+                        >{{nameCategory.name}}</option>
+                        {{#each category}}
+                            <option
+                                value='{{this._id}}'
+                                id='category'
+                                name='category'
+                                class='size__option'
+                            >{{this.name}}</option>
+
+                        {{/each}}
+                    </select>
+                    <label for='' class='lable-groud'>Category</label>
+                </div>
+        <div class='separate'></div>
+            <div class='form-groud__seconds'>
+                    <select id='status' name='status' class='status'>
+                        {{#each status}}
+                            <option
+                                value='{{this._id}}'
+                                id='status'
+                                name='status'
+                                class='size__option'
+                            >{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    <label for='' class='lable-groud'>Status</label>
+                </div>
+            </div>
+            <div class='form_grounds'>
+                <div class='form-groud__first'>
+                    <label for='images' class='upload_img'>
+                        <i class='fa-solid fa-upload icon'></i>Choose a photos
+                    </label>
+                    <input
+                        type='file'
+                        id='images' 
+                        name='images'
+                        class='images'
+                        multiple='multiple'
+                        onchange="valueImages()"
+                        accept='image/png, image/jpeg'
+                    />
+                </div>
+                <div class='separate'></div>
+                <div class='form-groud__seconds'>
+                    <span class='message__images'></span>
+                </div>
+            </div>
+            <div class='form_ground--onlyread'>
+                <table>
+                    <tr>
+                        <th>Size</th>
+                        {{#if product.size}}
+                            {{#each product.size}}
+                                <td>{{this.name}}</td>
+                            {{/each}}
+                        {{else}}
+                         <td><p>Trống !</p></td>
+
+                        {{/if}}
+
+                    </tr>
+                    <tr>
+                        <th>Số lượng</th>
+                        {{#if product.size}}
+                            {{#each product.size}}
+                                <td>{{this.count}}</td>
+                            {{/each}}
+                        {{else}}
+                            <td><p>Trống !</p></td>
+                        {{/if}}
+                    </tr>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td colspan='2'>{{product.status.name}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class='form_grounds'>
+                <label for='description' class='label_description'>Description</label>
+                <textarea
+                    name='description'
+                    class='description'
+                    id='description'
+                    cols='35'
+                    rows='5'
+                >{{product.description}}</textarea>
+            </div>
+            <div class='form_grounds'>
+                <button class='submit'><a href="/products" style="color: white;">Back</a></button>
+                <button class='submit' type='submit' {{#if product.deleted}} disabled{{/if}}>Update</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

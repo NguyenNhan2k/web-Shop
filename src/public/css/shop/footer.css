@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:wght@100;200;300&display=swap");
+.footer {
+  width: 100%;
+  background-color: #fff;
+  height: 190px;
+  box-shadow: rgba(79, 148, 238, 0.4) 5px 10px 10px 15px;
+  display: flex;
+  padding-top: 15px;
+  margin-top: 450px; }
+
+.location {
+  width: 32%; }
+  .location .address,
+  .location .phone,
+  .location .email {
+    display: flex;
+    height: 40px;
+    margin: 0 20px; }
+
+.title {
+  margin-bottom: 8px; }
+  .title h3 {
+    font-size: 20px; }
+
+.support_contain p {
+  margin-bottom: 10px;
+  font-size: 20px; }
+
+.icon-footer,
+.title-location {
+  color: 22px;
+  text-align: center;
+  margin-left: 10px; }
+
+.support {
+  width: 32%; }
+
+.contact {
+  width: 36%; }
+  .contact .contact-contain {
+    display: flex;
+    margin-top: 30px; }
+    .contact .contact-contain i {
+      font-size: 50px;
+      margin-left: 40px; }
+
+.copyright {
+  background-color: black;
+  height: 30px; }
+  .copyright p {
+    color: white;
+    text-align: center;
+    line-height: 30px; }

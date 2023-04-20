@@ -1,0 +1,47 @@
+.modal {
+  display: none;
+  width: 100%;
+  position: fixed;
+  z-index: 1000001;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); }
+
+.modal-delete {
+  position: absolute;
+  background-color: white;
+  height: 200px;
+  left: 50%;
+  margin-top: 10px;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  width: 400px;
+  border: 1px solid rgba(34, 23, 23, 0.507); }
+
+.title_modal > h3 {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 18px;
+  color: black; }
+
+.contain_modal {
+  text-align: center;
+  color: black; }
+
+.btn-ground {
+  position: absolute;
+  right: 0;
+  padding-right: 10px; }
+  .btn-ground .delete_modal {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f12626;
+    cursor: pointer; }
+  .btn-ground .back {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #387bf8;
+    cursor: pointer; }

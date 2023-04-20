@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:wght@100;200;300&display=swap");
+.form-addSize > form {
+  margin-left: 28%;
+  width: 500px;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; }
+  .form-addSize > form .form_ground {
+    width: 100%;
+    position: relative;
+    margin: 40px 0;
+    padding: 0 20px; }
+    .form-addSize > form .form_ground .back {
+      width: 100px;
+      height: 35px;
+      background-color: #f44336;
+      border: none;
+      border-radius: 5px; }
+      .form-addSize > form .form_ground .back a {
+        text-decoration: none;
+        line-height: 35px; }
+    .form-addSize > form .form_ground .add {
+      background-color: #4e73df;
+      float: right;
+      border-radius: 5px;
+      border: none;
+      width: 100px;
+      height: 35px; }
+    .form-addSize > form .form_ground input {
+      height: 42px;
+      width: 300px;
+      color: #0f0f0f;
+      font-size: 16px;
+      padding-left: 18px;
+      outline: none;
+      border-radius: 5px;
+      border: 1.5px solid #4e73df; }
+      .form-addSize > form .form_ground input::placeholder {
+        color: #999;
+        font-size: 16px; }
+      .form-addSize > form .form_ground input:focus {
+        outline: 1px solid #4e73df;
+        border: none;
+        box-shadow: #4e73df 0px 5px 15px; }
+    .form-addSize > form .form_ground select {
+      width: 100%;
+      color: #0f0f0f;
+      outline: none;
+      border-radius: 5px;
+      border: 1.5px solid #4e73df;
+      font-size: 16px;
+      height: 38px;
+      padding: 0 10px; }
+      .form-addSize > form .form_ground select .size__option {
+        color: #0f0f0f;
+        outline: none;
+        border-radius: 5px;
+        border: 1.5px solid #4e73df;
+        font-size: 16px; }
+    .form-addSize > form .form_ground textarea {
+      padding-top: 10px;
+      width: 100%;
+      color: #0f0f0f;
+      border-radius: 5px;
+      outline: #4e73df;
+      padding-left: 10px;
+      border: 1.5px solid #4e73df; }
+    .form-addSize > form .form_ground label {
+      position: absolute;
+      left: 30px;
+      top: -18px;
+      padding: 0 5px;
+      line-height: 20px;
+      color: #4e73df;
+      height: 20px;
+      background-color: white; }
+    .form-addSize > form .form_ground .label_description {
+      position: absolute;
+      top: -10px;
+      color: #0f0f0f;
+      z-index: 1000;
+      background-color: white;
+      height: 30px;
+      color: #4e73df;
+      line-height: 30px;
+      left: 30px;
+      top: -18px;
+      padding: 0 5px; }

@@ -1,0 +1,33 @@
+{{> toastMessage message}}
+<div class='register'>
+    <form id='form-register' method='post'>
+        <h1>REGISTER</h1>
+        <div class='form-group'>
+            <i class='fa-solid fa-users icon-register'></i>
+            <input type='text' id='name' name='name' placeholder='Name' />
+        </div>
+        <div class='form-group'>
+            <i class='fa-solid fa-location-dot icon-register'></i>
+            <input type='text' id='address' name='address' placeholder='Addresses' />
+        </div>
+        <div class='form-group'>
+            <i class='fa-solid fa-phone icon-register'></i>
+            <input type='number' id='phone' name='phone' placeholder='Phone' />
+        </div>
+        <div class='form-group'>
+            <i class='fa-solid fa-envelope icon-register'></i>
+            <input type='email' id='email' name='email' placeholder='Email' />
+        </div>
+        <div class='form-group'>
+            <i class='fa-solid fa-key icon-register'></i>
+            <input type='password' id='password' name='password' placeholder='Password' />
+
+        </div>
+        <div class='form-group'>
+            <a href='/login'>Login</a>
+        </div>
+        <div class='form-group submit'>
+            <button type='submit'>Register</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+// Danh muc va img khong thay doi
+// Danh muc va img thay doi
+// Danh muc thay doi va img khong doi
+// Danh muc ko thay doi va img thay doi
+const order = [
+    id: '123',
+    id_orderInfo: [ 'ao website','ao tay ngan']
+]
+const orderInfo = [
+    {
+        id: 'ao website',
+        name: 'ao website'
+    },
+    {
+        id: 'ao tay ngan'
+        name: 'ao tay ngan'
+    },
+]

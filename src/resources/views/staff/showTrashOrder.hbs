@@ -1,0 +1,82 @@
+{{>toastMessage message}}
+<form class='table_product' id="table_trashProduct" method="post" action="/order/handle-Action">
+    <div class='title'>
+        <h2>Đơn hàng đã xóa</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button>
+            <i class="fa-solid fa-arrow-left add"></i>
+                <a href='/order'>Quay lại</a>
+            </button>
+        </div>
+        <div class='search__products'>
+            <label>
+                <input type='text' placeholder='Searching...' />
+                <i class='fa-solid fa-magnifying-glass fa-table'></i>
+            </label>
+        </div>
+    </div>
+     <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <select name="action" class="select-Action" id="action" required>
+            <option value="" >-- Hành động --</option>
+            <option value="restore">Khôi phục</option>
+            <option value="force">Xóa vĩnh viễn</option>
+        </select>
+        <button type="submit" class="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Người đặt</th>
+                <th>Ngày đặt</th>
+                <th>Ngày xóa</th>
+                <th>Giá Đơn hàng</th>
+                <th>Xóa bởi</th>
+                <th>Xem</th>
+                <th>Khôi phục</th>
+                <th>Xóa vĩnh viễn</th>
+
+            </tr>
+            {{#if orders}}
+            {{#each orders}}
+                <tr>
+                    <td>
+                        <div class="form-checkAll">
+                            <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="orders" class="form-check-input">
+                        </div>
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{convertToDate this.createdAt}}</td>
+                    <td>{{convertToDate this.deletedAt}}</td>
+                    <td>{{convertToVND this.totalPrice}}</td>
+                    <td>{{this.deleteBy.name}}</td>
+                      <td>
+                        <a href='/order/{{this._id}}'><i class='fa-solid fa-eye'></i></a>
+                    </td>
+                    <td>
+                        <a  id="restore-order" data-id='{{this._id}}'><i class="fa-solid fa-rotate-left"></i></a>
+                    </td>
+                    <td>
+                        <button id='force_Destroy-order' data-id='{{this._id}}'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            {{else}}
+
+            <td colspan="10">Thùng rác trống.</td>
+            {{/if}}
+        </table>
+    </div>
+</form>
+<script src='/js/modalRestore.js'>
+
+</script>

@@ -1,0 +1,124 @@
+{{>toastMessage message}}
+<form class='table_product' method="post" action="/receipt/handle-Action">
+    <div class='title'>
+        <h2>Tables Products</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button>
+            <i class="fa-solid fa-plus add"></i>
+                <a href='/receipt/create'>Thêm</a>
+            </button>
+             <button>
+            <i class="fa-solid fa-trash trash"></i><a href='/receipt/trash'>Thùng Rác</a>
+            <p class="countTrash">{{countReceipt}}</p>
+            </button>
+        </div>
+       <div class='search__products'>
+            <div class="header-search">
+                <input type='text' class="search-input" id="search" placeholder='Searching...' />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="search-contain">
+                {{#each searchReceipt}}
+                 <a href="?_search&slug={{this.name}}" class="search-contain__product">
+                    <div class="second-product" data-id="{{this._id}}">
+                        <div class="title-product">{{this.name}}</div>
+                    </div>
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+    <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <select name="action" class="select-Action" id="action" required>
+            <option value="" >-- Hành động --</option>
+            <option value="destroy">Xóa</option>
+        </select>
+        <button type="submit" class="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Mã Phiếu {{sortable 'name' _sort}}</th>
+                <th>Xem</th>
+                <th>Nhập hàng</th>
+                <th>Xóa</th>
+
+            </tr>
+            {{#if receipts}}
+            {{#each receipts}}
+                <tr>
+                    <td> 
+                        <div class="form-checkAll">
+                            <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="receipts" class="form-check-input">
+                        </div>
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td>
+                        <a href='/receipt/detail/{{this._id}}'><i class='fa-solid fa-eye'></i></a>
+                    </td>
+                    <td>
+                        <a href='/receipt/{{this._id}}'><i class="fa-regular fa-pen-to-square"></i></a>
+                    </td>
+                 
+                    <td>
+                        <button id='delete-receipt' data-id='{{this._id}}'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            {{else}}
+            <td colspan="6">Bạn chưa có phiếu nhập nào?Hãy thêm phiếu Nhập!</td>
+            {{/if}}
+        </table>
+    </div>
+    {{#if receipts}}
+    <div class="paging">
+        <ul>
+          {{{pageView _page paging}}}
+        </ul>
+    </div>
+    {{/if}}
+    <div class="temp">.</div>
+</form>
+<script src='/js/modalDelete.js'></script>
+<script>
+    function searchFilter() {
+    const containSearch = document.querySelector('.search-contain');
+    const inputSearch = document.querySelector('.search-input');
+    const products = document.querySelectorAll('.search-contain__product');
+    const searchForm = document.querySelector('#form-search');
+
+    inputSearch.addEventListener('input', (e) => {
+        const txtSearch = e.target.value.trim().toLowerCase();
+        if(txtSearch.length>0) {
+            containSearch.style.display='block'
+        }else {
+             containSearch.style.display='none'
+        }
+        products.forEach((product) => {
+            if (product.innerText.toLowerCase().includes(txtSearch)) {
+                product.style.display = 'flex';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+    containSearch.addEventListener('blur', () => {
+        products.forEach((product) => {
+            product.style.display = 'none';
+        });
+    });
+}
+searchFilter();
+
+</script>

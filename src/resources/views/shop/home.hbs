@@ -1,0 +1,96 @@
+<div class='container'>
+    <div class='container-cleanse'>
+        <div class='container-cleanse__first'>
+            <div class='container-cleanse__price'>
+                <h2>Lọc giá</h2>
+                <i class='fa-solid fa-caret-down'></i>
+                <ul class='container-cleanse__price--list'>
+                    <li class='container-cleanse__price--listGround' class='radio-ground' id='radio-ground'>
+                        <a href='?_filter&type=price&value=0:100000' class='container-cleanse__price--name'>Dưới
+                            100.000₫</a>
+                    </li>
+                    <li class='container-cleanse__price--listGround'>
+                        <a href='?_filter&type=price&value=100000:200000' class='container-cleanse__price--name'>100.000
+                            - 200.000₫</a>
+                    </li>
+                    <li class='container-cleanse__price--listGround'>
+                        <a href='?_filter&type=price&value=200000:300000' class='container-cleanse__price--name'>200.000
+                            - 300.000₫</a>
+                    </li>
+                    <li class='container-cleanse__price--listGround'>
+                        <a href='?_filter&type=price&value=300000:999999' class='container-cleanse__price--name'>Trên
+                            300.000₫</a>
+                    </li>
+                </ul>
+            </div>
+            <div class='container-cleanse__category'>
+                <h2>Loại</h2>
+                <i class='fa-solid fa-caret-down'></i>
+                <ul class='container-cleanse__category--list'>
+                    {{#each categories}}
+                        <li class='container-cleanse__category--listGround'>
+                            <a
+                                href='?_filter&type=category&value={{this._id}}'
+                                class='container-cleanse__category--name'
+                            >{{this.name}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class='container-cleanse__size'>
+                <h2>Sắp xếp</h2>
+                <i class='fa-solid fa-caret-down'></i>
+                <ul class='container-cleanse__size--list'>
+                    <li class='container-cleanse__size--listGround'>
+                        <a href='?_sort&type=desc&column=export_price' class='container-cleanse__size--name'>Giảm dần</a>
+                    </li>
+                    <li class='container-cleanse__size--listGround'>
+                        <a href='?_sort&type=asc&column=export_price' class='container-cleanse__size--name'>Tăng dần</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class='container-listProduct'>
+
+        {{#if products}}
+            {{#each products}}
+                <a href='/product/{{this.slug}}' class='container-listProduct__detail'>
+                    <div class='container-listProduct__detail--img'>
+                        <img src='/img/products/{{getOneImg this.img}}' data-id='{{this._id}}' alt='' />
+                    </div>
+                    <div class='container-listProduct__detail--title'>
+                        <p>{{this.title}}</p>
+                        <span class='line-title'></span>
+                    </div>
+
+                    <div class='container-listProduct__detail--price'>
+                        <p class='container-listProduct__detail--exportPrice'>{{sale this.export_price this.sale}}</p>
+                        <i><s class='container-listProduct__detail--price__sale'>{{priceSale
+                                    this.export_price
+                                    this.sale
+                                }}</s></i>
+                    </div>
+                    <span class='sticker-sale'>-{{this.sale}}%</span>
+                </a>
+            {{/each}}
+
+        {{else}}
+            <h2>Không có sản phẩm nào!</h2>
+
+        {{/if}}
+
+    </div>
+    {{#if products}}
+        <div class='paging'>
+            <ul>
+                {{{pageView _page paging}}}
+            </ul>
+        </div>
+    {{/if}}
+</div>
+<form action='/product/'></form>
+<script src='/js/search.js'>
+</script>

@@ -1,0 +1,78 @@
+  {{>toastMessage message}}
+<div class='table_product' method="post" action="/products/handle-Action">
+    <div class='title'>
+        <h2>Nhập hàng</h2>
+        <hr />
+    </div>
+    <div class="selectAction">
+        <div class="form-checkAll">
+            <input type="checkbox" id="checkAll" class="form-checkAll-input">
+            <label for="checkAll" class="label-form-checkAll">Chọn tất cả</label>
+        </div>
+        <button class="submit" type="submit" disabled>Thực hiện</button>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Tên SP</th>
+                <th>Danh mục</th>
+            </tr>
+            {{#if products}}
+            {{#each products}}
+            <tr class="input-ReceiptName">
+                <td> 
+                        <input type="checkbox" id="{{this._id}}" value="{{this._id}}" name="products" class="form-check-input">
+                    </td>
+                    <td>{{sum @index 1}}</td>
+                    <td class="name">{{this.title}}</td>
+                    <td>{{this.category.name}}</td>
+                    <td>
+                        <ul hidden>
+                            {{#each this.size}}
+                                <li class="size-Product" id ="{{this._id}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                    </td>
+                   <td>
+                    <ul hidden>
+                        {{#each ../suppliers}}
+                            <li class="supplier" id="{{this._id}}">{{this.name}}</li>
+                        {{/each}}
+                    </ul>
+                   </td>
+                </tr>
+            {{/each}}
+            {{else}}
+            <td colspan="10">Bạn chưa có sản phẩm nào?Hãy thêm sản phẩm!</td>
+            {{/if}}
+        </table>
+    </div>
+    <div class="paging">
+        <ul>
+          {{{pageView _page paging}}}
+        </ul>
+    </div>
+     <div class='title' style="margin-top:20px;">
+        <hr />
+        <h2>Bảng nhập --- Mã phiếu : {{receipts.name}}</h2>
+        <hr />
+    </div>
+     <form class='tables' action="/receiptInfo/create" method="post">
+        <input type="text" id="receipt" name="receipt" value ="{{receipts._id}}" hidden>
+        <table class="tableReceipt">
+            <tr>
+                <th>Tên SP</th>
+                <th>Nhà CC</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+                <th>Giá nhập</th>
+                <th>Xóa</th> 
+            </tr>
+        </table>
+        <button type="submit" class="receipt-export"> Nhập hàng</button>
+    </form>
+    <div class="temp">.</div>
+</div>
+<script src="/js/receiptInfo.js">

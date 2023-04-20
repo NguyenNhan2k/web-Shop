@@ -1,0 +1,110 @@
+
+<form class='detail--order' method="post" action="/receipt/handle-Action">
+    <div class='title'>
+        <h2>Phiếu Nhập hàng</h2>
+        <div class='order--btn'>
+            <div>
+                <select id='action' name='action' required>
+                    <option value=''>--Hành động---</option>
+                    <option value='update'>Sửa đơn hàng</option>
+                    <option value='destroy'>Xóa đơn</option>
+                </select>
+                <input type='text' value='{{receipt._id}}' name='receipt' id='receipt' hidden />
+                <button type='submit'>Thực hiện</button>
+            </div>
+        </div>
+    </div>
+        <hr />
+   <div class="receiptDetail">
+    <p class="receiptDetail-ground">Mã Phiều: {{receipt.name}} </p>
+    <p class="receiptDetail-ground">Người nhập hàng: {{receipt.createBy.name}}</p>
+    <p class="receiptDetail-ground">Ngày nhập: {{convertToDate receipt.createdAt}}</p>
+   </div>
+    <div class='tables' style="margin-top: 20px;">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Tên SP</th>
+               <th>Size</th>
+               <th>Nhà CC</th>
+               <th>Số lượng</th>
+               <th>Giá nhập</th>
+               <th>Thành tiền</th>
+               <th>Sửa</th>
+               <th>Xóa</th>
+            </tr>
+            {{#if receiptInfo}}
+            {{#each receiptInfo}}
+               <tr>
+                 <td style='display: none;'>
+                    <input
+                            type='text'
+                            name='id_receiptInfo'
+                            id='id_receiptInfo'
+                            value='{{this._id}}'
+                            hidden
+                    />
+                </td>
+                <td>{{sum @index 1}}</td>
+                <td>{{this.id_Size.id_product.title}}</td>
+                <td>
+                    <span class='span-order__supplier'>{{this.id_Size.name}}</span>
+                    <select name='size' id='size' class='size-order'>
+                        {{#each this.id_Size.id_product.size}}
+                            <option value='{{this._id}}'>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <span class='span-order'>{{this.id_Supplier.name}}</span>
+                    <select name='supplier' id='supplier' class='supplier-order' hidden>
+                        {{#each ../supplier}}
+                            <option value='{{this._id}}'>{{this.name}}</option>
+                            {{/each}}
+                    </select>
+                </td>
+               <td><span class='span-order__quantity'>{{this.count}}</span>
+                        <input
+                            type='number'
+                            name='quantity'
+                            id='quantity'
+                            value='{{this.count}}'
+                            class='quantity-order'
+                        />
+                </td>
+                <td><span class='span-order__exportPrice'>{{convertToVND this.export_price}}</span>
+                        <input
+                            type='number'
+                            name='export_price'
+                            id='export_price'
+                            value='{{this.export_price}}'
+                            class='export-receipt'
+                        />
+                    </td>
+                <td> {{convertToVND this.total_money}}
+                    <input type="number" id="total_money" name="totalMoney" value="{{this.total_money}}" hidden>
+                </td>
+                 <td>
+                        <button class='btn-update'><i class='fa-solid fa-pen'></i></button>
+                    </td>
+                    <td>
+                        <button id='btn-delete'><i class='fa-solid fa-trash remove'></i></button>
+                    </td>
+               </tr>
+            {{/each}}
+            <td colspan="8" style="text-align: right;"><h3 style="color: #4f4f4f;">Tổng tiền :</h3> </td>
+            <td>{{convertToVND receipt.total_money}}</td>
+            {{else}}
+            <td colspan="10">Bạn chưa có sản phẩm nào?Hãy thêm sản phẩm!</td>
+            {{/if}}
+        </table>
+
+    </div>
+    <div class="temp">.</div>
+</form>
+<link rel='stylesheet' href='/css/staff/order.css' />
+<script src='/js/handleUpdateReceipt.js'>
+</script>
+<script src='/js/modalDelete.js'>
+
+</script>

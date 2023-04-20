@@ -1,0 +1,24 @@
+{{> toastMessage message }}
+<div class='table_product'>
+    <div class='title'>
+        <h2>Detail Size</h2>
+        <hr />
+    </div>
+    <div class='form-addSize'>
+        <form method='post' class='category__add' action="/statusProduct/update?_method=PUT">
+            <div class='form_ground'>
+                <input type='text' id='name' value="{{status.name}}" name='name' />
+                <input type='text' id='id' value="{{status._id}}" name='id' hidden/>
+                <label for='name'>Name</label>
+            </div>
+           
+            <div class='form_ground'>
+                <button class='back'><a href=''>Trở về</a></button>
+                <button type='submit' class='add'>Update</button>
+            </div>
+        </form>
+    </div>
+    <div class='addmargin'>
+        a
+    </div>
+</div>

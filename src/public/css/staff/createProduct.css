@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Poppins:wght@100;200;300&display=swap");
+.formCreateProduct {
+  height: 630px; }
+
+.formCreateProduct > form {
+  background-color: white;
+  display: flex;
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+  border-radius: 10px; }
+  .formCreateProduct > form .hr {
+    width: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.281);
+    height: 400px;
+    margin-top: 30px; }
+  .formCreateProduct > form .formCreateProduct__first .form-groud {
+    position: relative;
+    margin: 45px 0; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .span-message {
+      font-size: 14px;
+      position: absolute;
+      width: 100%;
+      right: 0;
+      bottom: -18px;
+      color: #f7381e;
+      padding: 5px 5px;
+      height: 20px;
+      line-height: 20px; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .label_description {
+      position: absolute;
+      top: -10px;
+      left: 0;
+      color: #0f0f0f;
+      z-index: 1000;
+      background-color: white;
+      height: 30px;
+      color: #4e73df;
+      line-height: 30px;
+      left: 10px;
+      top: -18px;
+      padding: 0 5px; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .submit {
+      background-color: #f68567;
+      color: white;
+      border: none;
+      width: 150px;
+      box-shadow: #4e72df83 0px 5px 15px;
+      cursor: pointer;
+      border-radius: 10px;
+      height: 40px;
+      margin-left: 100px; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud .submit:hover {
+        background-color: #f68667b2; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .description {
+      padding-top: 10px;
+      color: #0f0f0f;
+      border-radius: 5px;
+      outline: #4e73df;
+      padding-left: 10px;
+      border: 1.5px solid #4e73df; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .images {
+      display: none; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .message__images {
+      color: #0f0f0f;
+      padding: 0;
+      display: block;
+      text-align: center;
+      height: 20px; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .divImages {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      margin: auto;
+      border: 1px solid #4e73df;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud .divImages .div_img {
+        display: flex; }
+        .formCreateProduct > form .formCreateProduct__first .form-groud .divImages .div_img img {
+          width: 100px; }
+        .formCreateProduct > form .formCreateProduct__first .form-groud .divImages .div_img span {
+          color: #0f0f0f; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .upload_img {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      display: block;
+      background-color: #4e73df;
+      bottom: 0;
+      height: 42px;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      line-height: 42px; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud .upload_img .icon {
+        margin-right: 15px;
+        font-size: 22px; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud .upload_img:hover {
+        background-color: #4e72dfb7; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .price__VND {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+      background-color: #4e73df;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 0 10px;
+      height: 42px;
+      font-size: 16px;
+      line-height: 42px; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud .lable-groud {
+      position: absolute;
+      left: 10px;
+      top: -18px;
+      padding: 0 5px;
+      line-height: 20px;
+      color: #4e73df;
+      height: 20px;
+      background-color: white; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud .lable-groud .icon {
+        color: black; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud select {
+      color: #0f0f0f;
+      outline: none;
+      border-radius: 5px;
+      border: 1.5px solid #4e73df;
+      font-size: 16px;
+      height: 38px;
+      padding: 0 10px; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud select .size__option {
+        color: #0f0f0f;
+        outline: none;
+        border-radius: 5px;
+        border: 1.5px solid #4e73df;
+        font-size: 16px; }
+    .formCreateProduct > form .formCreateProduct__first .form-groud input {
+      height: 42px;
+      width: 350px;
+      color: #0f0f0f;
+      font-size: 16px;
+      padding-left: 18px;
+      outline: none;
+      border-radius: 5px;
+      border: 1.5px solid #4e73df; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud input::placeholder {
+        color: #999;
+        font-size: 16px; }
+      .formCreateProduct > form .formCreateProduct__first .form-groud input:focus {
+        border: none;
+        outline: 1px solid #4e73df; }
+  .formCreateProduct > form .formCreateProduct__first .invalid input {
+    border: 1px solid #f7381e; }
+  .formCreateProduct > form .formCreateProduct__first .invalid .lable-groud {
+    color: #f7381e; }

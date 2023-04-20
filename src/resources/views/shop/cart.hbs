@@ -1,0 +1,97 @@
+{{> toastMessage message}}
+
+<form  class='cart' method="post">
+    <div class='cart--title'><h1>Giỏ hàng</h1></div>
+    <div class='cart--table'>
+        <table>
+            <tr>
+                <th>Thông tin chi tiết
+                <th>Đơn giá </th>
+                <th>Số lượng</th>
+                <th>Tổng giá</th>
+            </tr>
+            {{#if cart}}
+            {{#each cart}}
+            <tr>
+                <td>
+                    <div class='detail'>
+                        <div class='cart--img'><img src='/img/products/{{getImgCart this.product}}' alt='' /></div>
+                        <div class='cart--contain'>
+                            <div class='cart--contain__title'>{{getTitleCart this.product }}</div>
+                            <div class='cart--contain__size'>Size: {{getNameSizeCart this.product}}</div>
+                            <button class='cart--contain__btn' data-id="{{getIdCart this.product}}" data-index="{{this.index}}">Xóa</button>
+                        </div>
+                    </div>
+                    <input type="text" name="size" id="size" value="{{getIdCart this.product}}" hidden>
+                </td>
+                <td><h3>{{getPriceCart this.product}}</h3></td>
+                <td>
+                    <div class='quantity--input'>
+                        <div class='minusCart'><i class='fa-solid fa-minus'></i></div>
+                        <input type='number' id='quantity' name='quantity' value='{{this.quantity}}' />
+                        <div class='plusCart'><i class='fa-solid fa-plus'></i></div>
+                    </div></td>
+                <td><h3>{{getTotalPriceCart this.product this.quantity}}</h3></td>
+            </tr>
+            
+            {{/each}}
+           {{else}}
+                {{#if cartOfUser}}
+                {{#each cartOfUser}}
+                  <tr>
+                    <td>
+                    <div class='detail'>
+                        <div class='cart--img'><img src='/img/products/{{getImgCart  this.product}}' alt='' /></div>
+                        <div class='cart--contain'>
+                            <div class='cart--contain__title'>{{this.product.id_product.title}}</div>
+                            <div class='cart--contain__size'>Size: {{this.product.name}}</div>
+                            <button class='cart--contain__btn--user' data-id="{{this._id}}">Xóa</button>
+                        </div>
+                    </div>
+                    <input type="text" name="size" id="size" value="{{this._id}}" hidden>
+                </td>
+                <td><h3>{{sale this.product.id_product.export_price this.product.id_product.sale}}</h3></td>
+                <td>
+                    <div class='quantity--input'>
+                        <div class='minusCart'><i class='fa-solid fa-minus'></i></div>
+                        <input type='number' id='quantity' name='quantity' value='{{this.quantity}}' />
+                        <div class='plusCart'><i class='fa-solid fa-plus'></i></div>
+                    </div></td>
+                <td><h3>{{getTotalPriceCart  this.product this.quantity}}</h3></td>
+                </tr>
+                {{/each}}
+                {{else}}
+                    <th colspan="10">Giỏ hàng trống! tiếp tục mua hàng. <a href="/">Tại đây!</a></th>
+                {{/if}}
+            {{/if}}
+        </table>
+    </div>
+    <div class='cart--total--Price'>
+        <div class='cart--total--Price__note'>
+            <div class='note--title'>Chú thích cho chủ của hàng</div>
+            <div class='note--contain'>
+                <textarea name='note' id='note' cols='80' rows='6'></textarea>
+            </div>
+        </div>
+        <div class='cart--total--Price__detail'>
+            <div class='cart--total__price'>Tổng tiền: <h3>
+                {{#if cart}}
+                    {{totalPriceCart cart}}
+                {{else}}
+                    {{#if cartOfUser}}
+                        {{totalPriceCart cartOfUser}}
+                    {{/if}}
+                {{/if}}
+            </h3></div>
+            <div class='cart--total__btn'>
+                <button class='cart--total__Pay' ><a href="/cart/order/">Đặt hàng</a></button>
+                <button class='cart--total__Update'>Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</form>
+<form class="formDeleteCart" method="post"></form>
+
+<script src='/js/clickSize.js'> 
+
+</script>

@@ -1,0 +1,40 @@
+<div class='table_product'>
+    <div class='title'>
+        <h2>Tables Status</h2>
+        <hr />
+    </div>
+    <div class='topbar__table'>
+        <div class='topbar__table--add'>
+            <button><a href='/statusProduct/create'>Thêm trạng thái</a></button>
+            <button><a href=''>Thùng rác</a></button>
+        </div>
+        <div class='search__products'>
+
+            <label>
+                <input type='text' placeholder='Searching...' />
+                <i class='fa-solid fa-magnifying-glass fa-table'></i>
+            </label>
+        </div>
+    </div>
+    <div class='tables'>
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Tên trạng thái</th>
+                <th>Xem</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+            {{#each Status}}
+                <tr>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td><a href='/statusProduct/{{this._id}}'><i class='fa-solid fa-eye'></i></a></td>
+                    <td><a href=''><i class='fa-solid fa-pen'></i></a></td>
+                    <td><a href='/category/{{this._id}}'><i class='fa-solid fa-trash remove'></i></a></td>
+                </tr>
+
+            {{/each}}
+        </table>
+    </div>
+</div>
